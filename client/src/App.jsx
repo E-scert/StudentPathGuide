@@ -1,9 +1,9 @@
 import { useState } from "react";
-import SubjectForm from "./Components/SubjectForm";
-import ResultsPage from "./Components/ResultsPage";
-import ChatAssistant from "./Components/ChatAssistant.jsx";
-import Navbar from "./Components/NavBar";
-import Footer from "./Components/Footer";
+import SubjectForm from "./components/SubjectForm.jsx";
+import ResultsPage from "./components/ResultsPage.jsx";
+import ChatAssistant from "./components/ChatAssistant.jsx";
+import Navbar from "./components/NavBar.jsx";
+import Footer from "./components/Footer.jsx";
 
 function App() {
   const [result, setResult] = useState(null);
