@@ -1,11 +1,15 @@
 import { useState } from "react";
 import SubjectForm from "./Components/SubjectForm";
 import ResultsPage from "./Components/ResultsPage";
-import ChartAssistant from "./Components/ChatAssistant";
+import ChatAssistant from "./Components/ChatAssistant";
+import Navbar from "./Components/Navbar";
+
 function App() {
   const [result, setResult] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (formData) => {
+    setLoading(true);
     try {
       const apsResponse = await fetch(
         "http://localhost:5000/api/aps/calculate",
@@ -31,24 +35,33 @@ function App() {
     } catch (error) {
       console.error("Error:", error);
       alert("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
-  return (
-    <div className="min-h-screen bg-gray-50 py-10 px-4">
-      <div className="text-center mb-10">
-        <h1 className="text-4xl font-bold text-blue-900">StudentPathGuide</h1>
-        <p className="text-gray-500 mt-2">
-          Discover the courses and careers that match your potential
-        </p>
-      </div>
+  const renderContent = () => {
+    if (loading) {
+      return (
+        <div className="flex flex-col items-center justify-center py-20">
+          <div className="w-16 h-16 border-4 border-blue-900 border-t-transparent rounded-full animate-spin mb-6"></div>
+          <p className="text-blue-900 font-semibold text-lg">
+            Finding your path...
+          </p>
+        </div>
+      );
+    }
+    if (!result) {
+      return <SubjectForm onSubmit={handleSubmit} />;
+    }
+    return <ResultsPage result={result} onStartOver={() => setResult(null)} />;
+  };
 
-      {!result ? (
-        <SubjectForm onSubmit={handleSubmit} />
-      ) : (
-        <ResultsPage result={result} onStartOver={() => setResult(null)} />
-      )}
-      <ChartAssistant result={result} />
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <Navbar />
+      <div className="py-10 px-4">{renderContent()}</div>
+      <ChatAssistant result={result} />
     </div>
   );
 }
