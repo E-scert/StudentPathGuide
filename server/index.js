@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import "./db/db.js";
+import apsRoutes from "./routes/apsRoutes.js";
 
 dotenv.config();
 
@@ -11,6 +12,8 @@ const PORT = process.env.PORT || 5000;
 //middleware
 app.use(cors());
 app.use(express.json());
+
+app.use("/api/aps", apsRoutes);
 
 app.get("/", (req, res) => {
   res.json({ message: "StudentPathGuide API is running" });
