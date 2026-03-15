@@ -11,14 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 //middleware
-app.use(
-  cors({
-    origin: [
-      "https://student-path-guide-55az.vercel.app",
-      "http://localhost:5173",
-    ],
-  }),
-);
+app.use(cors());
 app.use(express.json());
 
 app.use("/api/aps", apsRoutes);
