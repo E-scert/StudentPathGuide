@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SubjectForm from "./Components/SubjectForm";
 import ResultsPage from "./Components/ResultsPage";
-
+import ChartAssistant from "./Components/ChatAssistant";
 function App() {
   const [result, setResult] = useState(null);
 
@@ -48,6 +48,7 @@ function App() {
       ) : (
         <ResultsPage result={result} onStartOver={() => setResult(null)} />
       )}
+      <ChartAssistant result={result} />
     </div>
   );
 }
