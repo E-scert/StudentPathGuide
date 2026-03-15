@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import "./db/db.js";
 import apsRoutes from "./routes/apsRoutes.js";
+import courseRoutes from "./routes/courseRoutes.js";
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/aps", apsRoutes);
+app.use("/api/courses", courseRoutes);
 
 app.get("/", (req, res) => {
   res.json({ message: "StudentPathGuide API is running" });

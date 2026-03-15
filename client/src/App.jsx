@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SubjectForm from "./components/SubjectForm";
+import SubjectForm from "./Components/SubjectForm";
 function App() {
   const [result, setResult] = useState(null);
 
