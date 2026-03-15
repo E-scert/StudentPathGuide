@@ -75,12 +75,15 @@ function ResultsPage({ result, onStartOver }) {
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {course.universities.map((uni, index) => (
-                    <span
+                    <a
                       key={index}
+                      href={`https://${course.university_websites[index]}`}
+                      target="_blank"
+                      rel="noreferrer"
                       className="bg-blue-50 text-blue-800 text-sm px-3 py-1 rounded-full"
                     >
                       {uni}
-                    </span>
+                    </a>
                   ))}
                 </div>
               </div>
