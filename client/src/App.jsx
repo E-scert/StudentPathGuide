@@ -13,7 +13,7 @@ function App() {
     setLoading(true);
     try {
       const apsResponse = await fetch(
-        "http://localhost:5000/api/aps/calculate",
+        `https://studentpathguide-production.up.railway.app/api/aps/calculate`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -24,7 +24,7 @@ function App() {
       const aps = apsData.aps;
 
       const coursesResponse = await fetch(
-        `http://localhost:5000/api/courses/match?aps=${aps}`,
+        `https://studentpathguide-production.up.railway.app/api/courses/match?aps=${aps}`,
       );
       const coursesData = await coursesResponse.json();
 
