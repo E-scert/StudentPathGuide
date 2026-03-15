@@ -1,17 +1,33 @@
 import { useState } from "react";
 import SubjectForm from "./Components/SubjectForm";
+import ResultsPage from "./Components/ResultsPage";
+
 function App() {
   const [result, setResult] = useState(null);
 
   const handleSubmit = async (formData) => {
     try {
-      const response = await fetch("http://localhost:5000/api/aps/calculate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ subjects: formData.subjects }),
+      const apsResponse = await fetch(
+        "http://localhost:5000/api/aps/calculate",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ subjects: formData.subjects }),
+        },
+      );
+      const apsData = await apsResponse.json();
+      const aps = apsData.aps;
+
+      const coursesResponse = await fetch(
+        `http://localhost:5000/api/courses/match?aps=${aps}`,
+      );
+      const coursesData = await coursesResponse.json();
+
+      setResult({
+        ...formData,
+        aps,
+        courses: coursesData.courses,
       });
-      const data = await response.json();
-      setResult({ ...formData, aps: data.aps });
     } catch (error) {
       console.error("Error:", error);
       alert("Something went wrong. Please try again.");
@@ -30,21 +46,7 @@ function App() {
       {!result ? (
         <SubjectForm onSubmit={handleSubmit} />
       ) : (
-        <div className="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-md text-center">
-          <h2 className="text-2xl font-bold text-blue-900 mb-4">
-            Your APS Score
-          </h2>
-          <p className="text-6xl font-bold text-blue-600 mb-4">{result.aps}</p>
-          <p className="text-gray-500 mb-6">
-            Grade {result.grade} — {result.subjects.length} subjects entered
-          </p>
-          <button
-            onClick={() => setResult(null)}
-            className="text-blue-600 font-semibold hover:underline"
-          >
-            Start Over
-          </button>
-        </div>
+        <ResultsPage result={result} onStartOver={() => setResult(null)} />
       )}
     </div>
   );
