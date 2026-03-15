@@ -10,23 +10,42 @@ function ChatAssistant({ result }) {
   const [input, setInput] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!input.trim()) return;
 
     const userMessage = { role: "user", text: input };
-    setMessages([...messages, userMessage]);
+    setMessages((prev) => [...prev, userMessage]);
     setInput("");
 
-    // Mock response for now
-    setTimeout(() => {
+    try {
+      const response = await fetch("http://localhost:5000/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: input,
+          context: {
+            grade: result?.grade || null,
+            aps: result?.aps || null,
+            targetCareer: result?.targetCareer || null,
+          },
+        }),
+      });
+
+      const data = await response.json();
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", text: data.response },
+      ]);
+    } catch (error) {
+      console.error("Chat error:", error);
       setMessages((prev) => [
         ...prev,
         {
           role: "assistant",
-          text: "This is where the AI response will appear. The AI integration is coming soon!",
+          text: "Sorry, I am having trouble responding right now. Please try again.",
         },
       ]);
-    }, 1000);
+    }
   };
 
   const handleKeyPress = (e) => {
@@ -35,10 +54,8 @@ function ChatAssistant({ result }) {
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
-      {/* Chat Window */}
       {isOpen && (
         <div className="bg-white rounded-2xl shadow-2xl w-80 mb-4 flex flex-col border border-gray-200">
-          {/* Header */}
           <div className="bg-blue-900 text-white px-4 py-3 rounded-t-2xl flex justify-between items-center">
             <div>
               <p className="font-bold">AI Assistant</p>
@@ -52,7 +69,6 @@ function ChatAssistant({ result }) {
             </button>
           </div>
 
-          {/* Messages */}
           <div className="flex flex-col gap-3 p-4 h-80 overflow-y-auto">
             {messages.map((msg, index) => (
               <div
@@ -74,7 +90,6 @@ function ChatAssistant({ result }) {
             ))}
           </div>
 
-          {/* Input */}
           <div className="flex gap-2 p-3 border-t border-gray-200">
             <input
               type="text"
@@ -94,7 +109,6 @@ function ChatAssistant({ result }) {
         </div>
       )}
 
-      {/* Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="bg-blue-900 text-white w-16 h-16 rounded-full shadow-lg flex items-center justify-center text-2xl hover:bg-blue-700 transition duration-300"

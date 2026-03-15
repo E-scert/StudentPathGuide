@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import "./db/db.js";
 import apsRoutes from "./routes/apsRoutes.js";
 import courseRoutes from "./routes/courseRoutes.js";
-
+import chatRoutes from "./routes/chatRoutes.js";
 dotenv.config();
 
 const app = express();
@@ -16,6 +16,7 @@ app.use(express.json());
 
 app.use("/api/aps", apsRoutes);
 app.use("/api/courses", courseRoutes);
+app.use("/api/chat", chatRoutes);
 
 app.get("/", (req, res) => {
   res.json({ message: "StudentPathGuide API is running" });

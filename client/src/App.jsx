@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SubjectForm from "./Components/SubjectForm";
 import ResultsPage from "./Components/ResultsPage";
-import ChatAssistant from "./Components/ChatAssistant";
+import ChatAssistant from "./Components/ChatAssistant.jsx";
 import Navbar from "./Components/NavBar";
 import Footer from "./Components/Footer";
 
@@ -63,7 +63,7 @@ function App() {
       <Navbar />
       <div className="py-10 px-4">{renderContent()}</div>
       <ChatAssistant result={result} />
-      <footer />
+      <Footer />
     </div>
   );
 }
