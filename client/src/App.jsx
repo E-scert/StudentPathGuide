@@ -1,8 +1,8 @@
 import { useState } from "react";
 import SubjectForm from "./components/SubjectForm";
 import ResultsPage from "./components/ResultsPage";
-import ChatAssistant from "./Components/ChatAssistant";
-import Navbar from "./components/Navbar";
+import ChatAssistant from "./components/ChatAssistant";
+import Navbar from "./components/NavBar";
 import Footer from "./components/Footer";
 import ApplicationDates from "./components/ApplicationDates";
 
