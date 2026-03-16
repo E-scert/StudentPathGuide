@@ -33,6 +33,16 @@ function Navbar({ view, setView }) {
             Find My Path
           </button>
           <button
+            onClick={() => setView("improvement")}
+            className={`text-sm px-4 py-2 rounded-xl font-semibold transition duration-200 ${
+              view === "improvement"
+                ? "bg-white text-blue-900"
+                : "text-blue-200 hover:bg-blue-800"
+            }`}
+          >
+            Improve My Marks
+          </button>
+          <button
             onClick={() => setView("applications")}
             className={`text-sm px-4 py-2 rounded-xl font-semibold transition duration-200 ${
               view === "applications"

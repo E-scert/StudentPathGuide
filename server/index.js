@@ -8,7 +8,7 @@ import apsRoutes from "./routes/apsRoutes.js";
 import courseRoutes from "./routes/courseRoutes.js";
 import chatRoutes from "./routes/chatRoutes.js";
 import applicationRoutes from "./routes/applicationRoutes.js";
-
+import improvementRoutes from "./routes/improvementRoutes.js";
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -20,6 +20,7 @@ app.use("/api/aps", apsRoutes);
 app.use("/api/courses", courseRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/applications", applicationRoutes);
+app.use("/api/improvement", improvementRoutes);
 
 app.get("/", (req, res) => {
   res.json({ message: "StudentPathGuide API is running" });

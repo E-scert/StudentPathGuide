@@ -5,6 +5,7 @@ import ChatAssistant from "./components/ChatAssistant";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ApplicationDates from "./components/ApplicationDates";
+import ImprovementAdvisor from "./components/ImprovementAdvisor";
 
 function App() {
   const [result, setResult] = useState(null);
@@ -46,6 +47,9 @@ function App() {
   const renderContent = () => {
     if (view === "applications") {
       return <ApplicationDates />;
+    }
+    if (view == "improvement") {
+      return <ImprovementAdvisor />;
     }
     if (loading) {
       return (
