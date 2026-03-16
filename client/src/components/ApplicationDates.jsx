@@ -59,8 +59,8 @@ function ApplicationDates() {
         />
       </div>
 
-      {/* Table */}
-      <div className="bg-white rounded-2xl shadow-md overflow-hidden">
+      {/* Desktop Table */}
+      <div className="hidden md:block bg-white rounded-2xl shadow-md overflow-hidden">
         <table className="w-full text-sm">
           <thead>
             <tr className="bg-blue-900 text-white">
@@ -104,6 +104,48 @@ function ApplicationDates() {
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* Mobile Cards */}
+      <div className="md:hidden grid gap-4">
+        {filtered.map((app, index) => (
+          <div
+            key={index}
+            className="bg-white rounded-2xl shadow-md p-4 border-l-4 border-blue-600"
+          >
+            <div className="flex justify-between items-start mb-3">
+              <div>
+                <h4 className="font-bold text-blue-900 text-sm">
+                  {app.university}
+                </h4>
+                <span className="text-xs text-gray-400">{app.province}</span>
+              </div>
+              <span className="bg-blue-100 text-blue-900 text-xs font-bold px-2 py-1 rounded-full">
+                {app.abbreviation}
+              </span>
+            </div>
+            <div className="grid grid-cols-2 gap-2 text-xs mb-3">
+              <div className="bg-green-50 rounded-lg p-2">
+                <p className="text-gray-500 mb-1">Opens</p>
+                <p className="text-green-700 font-semibold">
+                  {app.opening_date}
+                </p>
+              </div>
+              <div className="bg-red-50 rounded-lg p-2">
+                <p className="text-gray-500 mb-1">Closes</p>
+                <p className="text-red-600 font-semibold">{app.closing_date}</p>
+              </div>
+            </div>
+            <a
+              href={`https://${app.apply_url}`}
+              target="_blank"
+              rel="noreferrer"
+              className="block text-center bg-blue-900 text-white text-xs px-3 py-2 rounded-xl hover:bg-blue-700 transition duration-200"
+            >
+              Apply Now ↗
+            </a>
+          </div>
+        ))}
       </div>
 
       {/* Notes */}
