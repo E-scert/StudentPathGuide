@@ -15,3 +15,4 @@ pool
   .catch((err) => console.error("Database connection error", err));
 
 export default pool;
+
