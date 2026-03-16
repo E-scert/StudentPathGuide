@@ -1,10 +1,13 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 import cors from "cors";
-// import dotenv from "dotenv";
+
 import "./db/db.js";
 import apsRoutes from "./routes/apsRoutes.js";
 import courseRoutes from "./routes/courseRoutes.js";
 import chatRoutes from "./routes/chatRoutes.js";
+import applicationRoutes from "./routes/applicationRoutes.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -16,6 +19,7 @@ app.use(express.json());
 app.use("/api/aps", apsRoutes);
 app.use("/api/courses", courseRoutes);
 app.use("/api/chat", chatRoutes);
+app.use("/api/applications", applicationRoutes);
 
 app.get("/", (req, res) => {
   res.json({ message: "StudentPathGuide API is running" });

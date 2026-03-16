@@ -1,19 +1,21 @@
 import { useState } from "react";
-import SubjectForm from "./components/SubjectForm.jsx";
-import ResultsPage from "./components/ResultsPage.jsx";
-import ChatAssistant from "./components/ChatAssistant.jsx";
-import Navbar from "./components/NavBar.jsx";
-import Footer from "./components/Footer.jsx";
+import SubjectForm from "./components/SubjectForm";
+import ResultsPage from "./components/ResultsPage";
+import ChatAssistant from "./Components/ChatAssistant";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import ApplicationDates from "./components/ApplicationDates";
 
 function App() {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [view, setView] = useState("home");
 
   const handleSubmit = async (formData) => {
     setLoading(true);
     try {
       const apsResponse = await fetch(
-        `https://studentpathguide-production.up.railway.app/api/aps/calculate`,
+        "https://studentpathguide-production.up.railway.app/api/aps/calculate",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -42,6 +44,9 @@ function App() {
   };
 
   const renderContent = () => {
+    if (view === "applications") {
+      return <ApplicationDates />;
+    }
     if (loading) {
       return (
         <div className="flex flex-col items-center justify-center py-20">
@@ -60,7 +65,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navbar />
+      <Navbar view={view} setView={setView} />
       <div className="py-10 px-4">{renderContent()}</div>
       <ChatAssistant result={result} />
       <Footer />
