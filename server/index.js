@@ -9,6 +9,8 @@ import courseRoutes from "./routes/courseRoutes.js";
 import chatRoutes from "./routes/chatRoutes.js";
 import applicationRoutes from "./routes/applicationRoutes.js";
 import improvementRoutes from "./routes/improvementRoutes.js";
+import tvetRoutes from "./routes/tvetRoutes.js";
+console.log("tvetRoutes loaded:", tvetRoutes)
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -21,6 +23,7 @@ app.use("/api/courses", courseRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/applications", applicationRoutes);
 app.use("/api/improvement", improvementRoutes);
+app.use("/api/tvet",tvetRoutes);
 
 app.get("/", (req, res) => {
   res.json({ message: "StudentPathGuide API is running" });

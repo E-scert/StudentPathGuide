@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ApplicationDates from "./components/ApplicationDates";
 import ImprovementAdvisor from "./components/ImprovementAdvisor";
-
+import TVETColleges from "./components/TVETColleges";
 function App() {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -50,6 +50,9 @@ function App() {
     }
     if (view == "improvement") {
       return <ImprovementAdvisor />;
+    }
+    if (view === "tvet") {
+      return <TVETColleges />;
     }
     if (loading) {
       return (

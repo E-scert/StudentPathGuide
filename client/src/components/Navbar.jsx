@@ -21,7 +21,7 @@ function Navbar({ view, setView }) {
         </div>
 
         {/* Navigation Links */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
           <button
             onClick={() => setView("home")}
             className={`text-sm px-4 py-2 rounded-xl font-semibold transition duration-200 ${
@@ -41,6 +41,16 @@ function Navbar({ view, setView }) {
             }`}
           >
             Improve My Marks
+          </button>
+          <button
+            onClick={() => setView("tvet")}
+            className={`text-sm px-4 py-2 rounded-xl font-semibold transition duration-200 ${
+              view === "tvet"
+                ? "bg-white text-blue-900"
+                : "text-blue-200 hover:bg-blue-800"
+            }`}
+          >
+            TVET Colleges
           </button>
           <button
             onClick={() => setView("applications")}

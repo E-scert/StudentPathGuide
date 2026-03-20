@@ -2,7 +2,9 @@ import express from "express";
 import { chat } from "../services/aiService.js";
 
 const router = express.Router();
-
+router.get("/test", (req, res) => {
+  res.json({ message: "TVET route is working" });
+});
 router.post("/", async (req, res) => {
   const { message, context } = req.body;
 
