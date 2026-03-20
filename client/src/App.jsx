@@ -7,6 +7,8 @@ import Footer from "./components/Footer";
 import ApplicationDates from "./components/ApplicationDates";
 import ImprovementAdvisor from "./components/ImprovementAdvisor";
 import TVETColleges from "./components/TVETColleges";
+import Bursaries from "./components/Bursaries";
+
 function App() {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -45,14 +47,19 @@ function App() {
   };
 
   const renderContent = () => {
+    console.log("Current view:", view);
     if (view === "applications") {
       return <ApplicationDates />;
     }
-    if (view == "improvement") {
+    if (view === "improvement") {
       return <ImprovementAdvisor />;
     }
     if (view === "tvet") {
       return <TVETColleges />;
+    }
+
+    if (view === "bursaries") {
+      return <Bursaries />;
     }
     if (loading) {
       return (
