@@ -8,6 +8,7 @@ import ApplicationDates from "./components/ApplicationDates";
 import ImprovementAdvisor from "./components/ImprovementAdvisor";
 import TVETColleges from "./components/TVETColleges";
 import Bursaries from "./components/Bursaries";
+import CareerQuiz from "./components/CareerQuiz";
 
 function App() {
   const [result, setResult] = useState(null);
@@ -60,6 +61,10 @@ function App() {
 
     if (view === "bursaries") {
       return <Bursaries />;
+    }
+
+    if (view === "quiz") {
+      return <CareerQuiz />;
     }
     if (loading) {
       return (

@@ -66,6 +66,7 @@ function Navbar({ view, setView }) {
             { label: "Improve My Marks", value: "improvement" },
             { label: "TVET Colleges", value: "tvet" },
             { label: "Bursaries", value: "bursaries" },
+            { label: "Career Quiz", value: "quiz" },
             { label: "Application Dates", value: "applications" },
           ].map((item) => (
             <button
