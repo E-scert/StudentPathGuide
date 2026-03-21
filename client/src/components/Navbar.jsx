@@ -31,8 +31,10 @@ function Navbar({ view, setView }) {
           {[
             { label: "Find My Path", value: "home" },
             { label: "Improve My Marks", value: "improvement" },
+            { label: "Subject Combinations", value: "combinations" },
             { label: "TVET Colleges", value: "tvet" },
             { label: "Bursaries", value: "bursaries" },
+            { label: "Career Quiz", value: "quiz" },
             { label: "Application Dates", value: "applications" },
           ].map((item) => (
             <button
@@ -64,6 +66,7 @@ function Navbar({ view, setView }) {
           {[
             { label: "Find My Path", value: "home" },
             { label: "Improve My Marks", value: "improvement" },
+            { label: "Subject Combinations", value: "combinations" },
             { label: "TVET Colleges", value: "tvet" },
             { label: "Bursaries", value: "bursaries" },
             { label: "Career Quiz", value: "quiz" },

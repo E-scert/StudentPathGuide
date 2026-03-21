@@ -9,6 +9,7 @@ import ImprovementAdvisor from "./components/ImprovementAdvisor";
 import TVETColleges from "./components/TVETColleges";
 import Bursaries from "./components/Bursaries";
 import CareerQuiz from "./components/CareerQuiz";
+import SubjectCombinations from "./components/SubjectCombinations";
 
 function App() {
   const [result, setResult] = useState(null);
@@ -61,6 +62,9 @@ function App() {
 
     if (view === "bursaries") {
       return <Bursaries />;
+    }
+    if (view === "combinations") {
+      return <SubjectCombinations />;
     }
 
     if (view === "quiz") {
