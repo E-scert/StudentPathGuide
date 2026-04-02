@@ -1,6 +1,17 @@
 import { useState } from "react";
-function Navbar({ view, setView }) {
+
+function Navbar({ view, setView, darkMode, setDarkMode }) {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const navItems = [
+    { label: "Find My Path", value: "home" },
+    { label: "Improve My Marks", value: "improvement" },
+    { label: "Subject Guide", value: "combinations" },
+    { label: "TVET Colleges", value: "tvet" },
+    { label: "Bursaries", value: "bursaries" },
+    { label: "Career Quiz", value: "quiz" },
+    { label: "Application Dates", value: "applications" },
+  ];
 
   return (
     <nav className="bg-blue-900 text-white px-6 py-4 shadow-lg sticky top-0 z-40">
@@ -28,15 +39,7 @@ function Navbar({ view, setView }) {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-2">
-          {[
-            { label: "Find My Path", value: "home" },
-            { label: "Improve My Marks", value: "improvement" },
-            { label: "Subject Combinations", value: "combinations" },
-            { label: "TVET Colleges", value: "tvet" },
-            { label: "Bursaries", value: "bursaries" },
-            { label: "Career Quiz", value: "quiz" },
-            { label: "Application Dates", value: "applications" },
-          ].map((item) => (
+          {navItems.map((item) => (
             <button
               key={item.value}
               onClick={() => setView(item.value)}
@@ -49,6 +52,13 @@ function Navbar({ view, setView }) {
               {item.label}
             </button>
           ))}
+          {/* Dark Mode Toggle */}
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            className="ml-2 bg-blue-800 hover:bg-blue-700 text-white w-10 h-10 rounded-xl flex items-center justify-center transition duration-200"
+          >
+            {darkMode ? "☀️" : "🌙"}
+          </button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -63,15 +73,7 @@ function Navbar({ view, setView }) {
       {/* Mobile Menu */}
       {menuOpen && (
         <div className="md:hidden mt-4 flex flex-col gap-2">
-          {[
-            { label: "Find My Path", value: "home" },
-            { label: "Improve My Marks", value: "improvement" },
-            { label: "Subject Combinations", value: "combinations" },
-            { label: "TVET Colleges", value: "tvet" },
-            { label: "Bursaries", value: "bursaries" },
-            { label: "Career Quiz", value: "quiz" },
-            { label: "Application Dates", value: "applications" },
-          ].map((item) => (
+          {navItems.map((item) => (
             <button
               key={item.value}
               onClick={() => {
@@ -87,6 +89,16 @@ function Navbar({ view, setView }) {
               {item.label}
             </button>
           ))}
+          {/* Mobile Dark Mode Toggle */}
+          <button
+            onClick={() => {
+              setDarkMode(!darkMode);
+              setMenuOpen(false);
+            }}
+            className="text-sm px-4 py-3 rounded-xl font-semibold text-left bg-blue-800 hover:bg-blue-700 text-white transition duration-200"
+          >
+            {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
+          </button>
         </div>
       )}
     </nav>
