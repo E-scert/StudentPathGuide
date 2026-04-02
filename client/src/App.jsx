@@ -15,6 +15,7 @@ function App() {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [view, setView] = useState("home");
+  const [darkMode, setDarkMode] = useState(false);
 
   const handleSubmit = async (formData) => {
     setLoading(true);
@@ -87,11 +88,18 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar view={view} setView={setView} />
-      <div className="py-10 px-4">{renderContent()}</div>
-      <ChatAssistant result={result} />
-      <Footer />
+    <div className={darkMode ? "dark" : ""}>
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+        <Navbar
+          view={view}
+          setView={setView}
+          darkMode={darkMode}
+          setDarkMode={setDarkMode}
+        />
+        <div className="py-10 px-4">{renderContent()}</div>
+        <ChatAssistant result={result} />
+        <Footer />
+      </div>
     </div>
   );
 }

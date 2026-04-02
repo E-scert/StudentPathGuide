@@ -28,6 +28,7 @@ app.use("/api/improvement", improvementRoutes);
 app.use("/api/tvet", tvetRoutes);
 app.use("/api/bursaries", bursaryRoutes);
 app.use("/api/combinations", subjectCombinationRoutes);
+
 app.get("/", (req, res) => {
   res.json({ message: "StudentPathGuide API is running" });
 });
