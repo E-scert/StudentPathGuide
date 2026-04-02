@@ -37,11 +37,11 @@ function AdminDashboard() {
     description: "",
   });
 
-  const API = "https://studentpathguide-production.up.railway.app/api/admin";
+  const API = "http://localhost:5000/api/admin";
 
   const handleLogin = async () => {
     try {
-      const response = await fetch(`${API}/login`, {
+      const response = await fetch(`${API}/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password }),

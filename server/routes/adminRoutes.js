@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 import pool from "../db/db.js";
 
@@ -6,6 +8,8 @@ const router = express.Router();
 // Login
 router.post("/login", (req, res) => {
   const { password } = req.body;
+  console.log("Password received:", password);
+  console.log("Admin password:", process.env.ADMIN_PASSWORD);
   if (password === process.env.ADMIN_PASSWORD) {
     res.json({ success: true });
   } else {
