@@ -11,6 +11,7 @@ function Navbar({ view, setView, darkMode, setDarkMode }) {
     { label: "Bursaries", value: "bursaries" },
     { label: "Career Quiz", value: "quiz" },
     { label: "Application Dates", value: "applications" },
+    { label: "⚙ Admin", value: "admin" },
   ];
 
   return (

@@ -10,6 +10,7 @@ import TVETColleges from "./components/TVETColleges";
 import Bursaries from "./components/Bursaries";
 import CareerQuiz from "./components/CareerQuiz";
 import SubjectCombinations from "./components/SubjectCombinations";
+import AdminDashboard from "./components/AdminDashboard";
 
 function App() {
   const [result, setResult] = useState(null);
@@ -78,6 +79,9 @@ function App() {
 
     if (view === "quiz") {
       return <CareerQuiz />;
+    }
+    if (view === "admin") {
+      return <AdminDashboard />;
     }
     if (loading) {
       return (
