@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SubjectForm from "./components/SubjectForm";
 import ResultsPage from "./components/ResultsPage";
 import ChatAssistant from "./components/ChatAssistant";
@@ -16,6 +16,14 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [view, setView] = useState("home");
   const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [darkMode]);
 
   const handleSubmit = async (formData) => {
     setLoading(true);
@@ -88,18 +96,16 @@ function App() {
   };
 
   return (
-    <div className={darkMode ? "dark" : ""}>
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-        <Navbar
-          view={view}
-          setView={setView}
-          darkMode={darkMode}
-          setDarkMode={setDarkMode}
-        />
-        <div className="py-10 px-4">{renderContent()}</div>
-        <ChatAssistant result={result} />
-        <Footer />
-      </div>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <Navbar
+        view={view}
+        setView={setView}
+        darkMode={darkMode}
+        setDarkMode={setDarkMode}
+      />
+      <div className="py-10 px-4">{renderContent()}</div>
+      <ChatAssistant result={result} />
+      <Footer />
     </div>
   );
 }
